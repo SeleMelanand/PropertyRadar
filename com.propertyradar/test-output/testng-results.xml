@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="27904" started-at="2018-09-12T07:09:04Z" finished-at="2018-09-12T07:09:32Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="27904" started-at="2018-09-12T07:09:04Z" finished-at="2018-09-12T07:09:32Z">
+      <class name="ztrialpackage.Trialclass">
+        <test-method status="PASS" signature="samplea(java.lang.String, java.lang.String)[pri:0, instance:ztrialpackage.Trialclass@543c6f6d]" name="samplea" duration-ms="13165" started-at="2018-09-12T07:09:05Z" data-provider="fetchData" finished-at="2018-09-12T07:09:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[abcd]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[ab@email.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- samplea -->
+        <test-method status="PASS" signature="samplea(java.lang.String, java.lang.String)[pri:0, instance:ztrialpackage.Trialclass@543c6f6d]" name="samplea" duration-ms="13669" started-at="2018-09-12T07:09:18Z" data-provider="fetchData" finished-at="2018-09-12T07:09:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[abcdef]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[abef@email.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- samplea -->
+      </class> <!-- ztrialpackage.Trialclass -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
