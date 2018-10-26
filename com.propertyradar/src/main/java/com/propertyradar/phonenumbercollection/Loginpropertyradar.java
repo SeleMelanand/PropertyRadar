@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,7 +26,7 @@ public class Loginpropertyradar{
 	System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 	driver = new ChromeDriver();
 	driver.manage().window().maximize();
-	driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+	driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 	}
 	
 	public void launchpropertyradar(){
@@ -48,6 +49,20 @@ public class Loginpropertyradar{
 		
 	}
 
+	
+	public void pageloadstate() throws InterruptedException {
+		//get the state whether page is loading or not
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		String states =null;
+		do {
+			states =js.executeScript("return document.readyState").toString();
+			Thread.sleep(3000);
+			System.out.println("page loaded!!!: "+ states);
+		} while (states== "complete");
+		System.out.println("page loaded sucessfully");
+
+		
+	}
 	
 	
 	public void exceldata() throws IOException{

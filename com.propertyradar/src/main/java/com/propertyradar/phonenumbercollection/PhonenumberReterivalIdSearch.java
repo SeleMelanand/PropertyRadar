@@ -19,26 +19,31 @@ public class PhonenumberReterivalIdSearch extends Loginpropertyradar {
 
 	@Test
 	public void getphonumber() throws InterruptedException, IOException {
+		//reading data from Excel 
 		exceldata();
 		int sizeofdata = al.size();
 
+		// Browser launcha nd login to Application 
 		login();
 		launchpropertyradar();
 		Thread.sleep(5000);
-
+		
+		//Select the search icon on right top corner
 		driver.findElementByXPath("(//span[@data-ref='btnIconEl'])[3]").click();
 
 		Thread.sleep(2000);
 
+		//Depending up on the total inputs given , following loop will be executed.
 		for (int j = 0; j <= sizeofdata - 1; j++) {
 
+			//Enter data n the RadarID search edit box
 			driver.findElementByXPath("//input[@placeholder= 'RadarID']").sendKeys(al.get(j));
 			Thread.sleep(2000);
 
 			driver.findElementByXPath("(//span[text()='Search'])[3]").click();
-			
-			WebDriverWait wait2 = new WebDriverWait(driver, 60);
 
+			WebDriverWait wait2 = new WebDriverWait(driver, 60);
+			// Selecting the Contacts tab to navigate from Overview tab to Contacts tab.
 			try {
 				wait2.until(ExpectedConditions
 						.elementToBeClickable(driver.findElementByXPath("(//span[text()='Contacts'])[1]")));
@@ -47,15 +52,22 @@ public class PhonenumberReterivalIdSearch extends Loginpropertyradar {
 				System.out.println("Exception ocured during navigating to contacts page");
 			}
 
-			try {
-				WebDriverWait wait3 = new WebDriverWait(driver, 30);
+			
+			/*try {
+				WebDriverWait wait3 = new WebDriverWait(driver, 90);
 				wait3.until(ExpectedConditions.elementToBeSelected(driver
 						.findElementByXPath("(//div[contains(@id,'phoneTypeWidget')]/div/div/div/div/label/a)[1]")));
-				System.out.println("Name of the person");
+				System.out.println("Name of the person - "
+						+ driver.findElementByXPath("(//span[contains(@class,'panel-headers')])[1]").getText());
 			} catch (Exception e1) {
-				System.out.println("Exception occured during the ph number occurance");
-			}
-
+				System.out.println("Exception occured during the ph number occurance for "
+						+ driver.findElementByXPath("(//span[contains(@class,'panel-headers')])[1]").getText());
+			}*/
+			
+			// confirming whether page is loaded fully or not
+			pageloadstate();
+			
+			// retrieving the list of available Phone numbers and saving it in the list  
 			List<WebElement> phonenumberdetails = driver
 					.findElementsByXPath("//div[contains(@id,'phoneTypeWidget')]/div/div/div/div/label/a");
 
@@ -107,10 +119,13 @@ public class PhonenumberReterivalIdSearch extends Loginpropertyradar {
 			workbook1.write(fos);
 			workbook1.close();
 
-			driver.findElementByXPath("//span[contains(@class,'icon-pr-left')]").click();
+			// driver.findElementByXPath("//span[contains(@class,'icon-pr-left')]").click();
+
+			driver.navigate().back();
 			System.out.println("Navigating to search window");
 
 		}
 
 	}
+
 }

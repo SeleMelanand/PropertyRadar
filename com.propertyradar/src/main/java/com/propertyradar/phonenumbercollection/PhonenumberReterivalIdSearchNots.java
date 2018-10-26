@@ -39,11 +39,12 @@ public class PhonenumberReterivalIdSearchNots extends Loginpropertyradar {
 			WebDriverWait wait2 = new WebDriverWait(driver, 60);
 			driver.findElementByXPath("(//span[text()='Search'])[3]").click();
 			
-			// getting values from Proeprty tab summary section
-			Thread.sleep(6000);
+			// getting values from Property tab summary section
+			//Thread.sleep(6000);
+			pageloadstate();
 			driver.findElementByXPath("(//span[text()='Property'])[2]").click();
 			
-			wait2.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//span[text()='Add Photo']")));
+			//wait2.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//span[text()='Add Photo']")));
 					
 			String estimatedvalue=null;
 			String assessedvalue= null;
@@ -129,19 +130,21 @@ public class PhonenumberReterivalIdSearchNots extends Loginpropertyradar {
 			
 			
 			// getting values from contacts tab
-
+			wait2.until(ExpectedConditions
+					.elementToBeClickable(driver.findElementByXPath("(//span[text()='Contacts'])[1]")));
 			try {
-				wait2.until(ExpectedConditions
-						.elementToBeClickable(driver.findElementByXPath("(//span[text()='Contacts'])[1]")));
 				driver.findElementByXPath("(//span[text()='Contacts'])[1]").click();
 			} catch (Exception e1) {
 				System.out.println("Exception ocured during navigating to contacts page");
 			}
 
+			
+			WebDriverWait wait3 = new WebDriverWait(driver, 90);
+			/*wait3.until(ExpectedConditions.elementToBeSelected(driver
+					.findElementByXPath("(//div[contains(@id,'phoneTypeWidget')]/div/div/div/div/label/a)[1]")));*/
+			pageloadstate();
 			try {
-				WebDriverWait wait3 = new WebDriverWait(driver, 90);
-				wait3.until(ExpectedConditions.elementToBeSelected(driver
-						.findElementByXPath("(//div[contains(@id,'phoneTypeWidget')]/div/div/div/div/label/a)[1]")));
+				
 				System.out.println("Name of the person - "
 						+ driver.findElementByXPath("(//span[contains(@class,'panel-headers')])[1]").getText());
 			} catch (Exception e1) {
@@ -202,7 +205,7 @@ public class PhonenumberReterivalIdSearchNots extends Loginpropertyradar {
 
 			System.out.println("Going to save data in excel");
 					
-			FileOutputStream fos = new FileOutputStream(".//testdata/Outputresult.xlsx");
+			FileOutputStream fos = new FileOutputStream(".//testdata/OutputresultNOTS.xlsx");
 			workbook1.write(fos);
 			workbook1.close();
 
